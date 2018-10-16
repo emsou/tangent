@@ -15,8 +15,15 @@
             <p>Enter your name:</p>
             <p id="loginError"></p>
             <form id="setUsername">
-                <input id="username" ng-model="setName" />
-                <input type="submit"></input>
+                <div>
+                    <input id="username" placeholder="Username" ng-model="setName" />
+                </div>
+                <div>
+                    <input type="password" id="password" placeholder="Password" ng-model="setPass" />
+                </div>
+                <div>
+                    <input type="submit"></input>
+                </div>
             </form>
         </div>
         <div id="chat" ng-controller="mainController">

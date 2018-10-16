@@ -23,6 +23,13 @@ var testSchema = new mongoose.Schema({
 });
 var Message = mongoose.model('Message', testSchema);
 
+//username schema
+var userSchema = new mongoose.Schema({
+    name: String,
+    password: String
+});
+var User = mongoose.model('User', userSchema);
+
 //app
 app.use('/', express.static(__dirname));
 app.use('/', express.static(__dirname + '/../client/'));
@@ -39,10 +46,24 @@ io.on('connection', function(socket){
     });
 
     var sender = "Anonymous";
-    socket.on('set user', function(data, callback){
-        console.log('setting username to ' + data);
-        callback(true);
-        sender = data;
+    socket.on('set user', function(user, pass, callback){
+        var existingUsers = User.find({name : user}, function(err, docs){
+            if(docs.length == 0){
+                console.log('New User ' + user);
+                var newUser = new User({name: user, password: pass});
+                newUser.save(function(err){
+                    if(err) throw err;
+                });
+            }else{
+                console.log('Existing User ' + user);
+                if(docs[0].password === pass){
+                    callback(true);
+                    sender = user;
+                }else{
+                    callback(false);
+                }
+            }
+        });
     });
     
     socket.on('chat message', function(msg){
