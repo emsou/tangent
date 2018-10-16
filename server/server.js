@@ -18,7 +18,8 @@ db.once('open', function() {
 var testSchema = new mongoose.Schema({
     name: String,
     message: String,
-    timestamp: {type: Date, default: Date.now}
+    timestamp: {type: Date, default: Date.now},
+    branch: {type: Number, default: 1}
 });
 var Message = mongoose.model('Message', testSchema);
 
@@ -36,12 +37,19 @@ io.on('connection', function(socket){
         if(err) throw err;
         socket.emit('load messages', docs);
     });
+
+    var sender = "Anonymous";
+    socket.on('set user', function(data, callback){
+        console.log('setting username to ' + data);
+        callback(true);
+        sender = data;
+    });
     
     socket.on('chat message', function(msg){
-        var msgDoc = new Message({message: msg, name: 'Anonymous'});
+        var msgDoc = new Message({message: msg, name: sender});
         msgDoc.save(function(err){
             if(err) throw err;
-            io.emit('chat message', msg);
+            io.emit('chat message', sender, msg);
         });
     });
 
