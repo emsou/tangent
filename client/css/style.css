@@ -6,6 +6,13 @@
 body {
     font: 13px Helvetica, Arial;
 }
+.btn {
+    width: 9%;
+    background: rgb(128, 255, 128);
+    border: none;
+    margin: 5px;
+    padding: 10px;
+}
 #chat, #createUser {
     display: none;
 }
@@ -24,7 +31,7 @@ body {
 }
 #chatInput button { 
     width: 9%;
-    background: rgb(130, 224, 255); 
+    background: rgb(128, 255, 128); 
     border: none; 
     padding: 10px; 
 }
