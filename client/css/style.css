@@ -6,7 +6,7 @@
 body {
     font: 13px Helvetica, Arial;
 }
-#chat {
+#chat, #createUser {
     display: none;
 }
 #chatInput {

@@ -15,15 +15,25 @@
             <p>Enter your name:</p>
             <p id="loginError"></p>
             <form id="setUsername">
-                <div>
-                    <input id="username" placeholder="Username" ng-model="setName" />
-                </div>
-                <div>
-                    <input type="password" id="password" placeholder="Password" ng-model="setPass" />
-                </div>
-                <div>
-                    <input type="submit"></input>
-                </div>
+                <div><input id="username" placeholder="Username" ng-model="setName" /></div>
+                <div><input type="password" id="password" placeholder="Password" ng-model="setPass" /></div>
+                <div><button type="submit"class="btn">Login</button></div>
+            </form>
+            <form id="toCreation">
+                <button type="submit" class="btn">Create new Account</button>
+            </form>
+        </div>
+        <div id="createUser">
+            <p>Create a new user account:</p>
+            <p id="creationError"></p>
+            <form id="makeAccount">
+                <div><input id="newUsername" placeholder="Username" ng-model="setName" /></div>
+                <div><input type="password" id="password1" placeholder="Password" ng-model="setPass1" /></div>
+                <div><input type="password" id="password2" placeholder="Confirm Password" ng-model="setPass2" /></div>
+                <div><button type="submit" class="btn">Create Account</button></div>
+            </form>
+            <form id="backtoLogin">
+                <button type="submit" class="btn">Back</button>
             </form>
         </div>
         <div id="chat" ng-controller="mainController">

@@ -46,14 +46,12 @@ io.on('connection', function(socket){
     });
 
     var sender = "Anonymous";
-    socket.on('set user', function(user, pass, callback){
+    //login function
+    socket.on('login user', function(user, pass, callback){
         var existingUsers = User.find({name : user}, function(err, docs){
             if(docs.length == 0){
-                console.log('New User ' + user);
-                var newUser = new User({name: user, password: pass});
-                newUser.save(function(err){
-                    if(err) throw err;
-                });
+                console.log('User ' + user + ' does not exist.');
+                callback(false);
             }else{
                 console.log('Existing User ' + user);
                 if(docs[0].password === pass){
@@ -62,6 +60,28 @@ io.on('connection', function(socket){
                 }else{
                     callback(false);
                 }
+            }
+        });
+    });
+    //create user function
+    socket.on('create user', function(user, pass1, pass2, callback){
+        var existingUsers = User.find({name : user}, function(err, docs){
+            if(docs.length == 0){
+                console.log('New User ' + user);
+                if(pass1 === pass2){
+                    var newUser = new User({name: user, password: pass1});
+                    newUser.save(function(err){
+                        if(err) throw err;
+                    });
+                    sender = newUser;
+                    callback(true);
+                }else{
+                    console.log('Error: Passwords do not match');
+                    callback(false);
+                }
+            }else{
+                console.log('Error: User ' + user + ' already exists');
+                callback(false);
             }
         });
     });
