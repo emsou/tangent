@@ -1,9 +1,9 @@
 WORK IN PROGRESS
 
 Current features:
--basic chat app (MEAN Stack, Socket.io, jQuery)
--user can login (if username does not exist, an account with the desired username and password is created)
--app runs on localhost
+- basic chat app (MEAN Stack, Socket.io, jQuery)
+- user can login (if username does not exist, an account with the desired username and password is created)
+- app runs on localhost
   - if multiple browser windows are opened, each can function as an account and send messages
   - if one window sends a message, the other windows automatically update that message (using Socket.io)
   
