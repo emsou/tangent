@@ -19,7 +19,7 @@ jQuery(function($){
         socket.emit('login user', $usernameBox.val(), $passwordBox.val(), function(data){
             if(data){
                 $('#login').toggle();
-                $('#chat').toggle();
+                return window.location.href='chat.html';
             }else{
                 $loginError.html("Incorrect username or password.");
                 $loginForm.trigger('reset');
@@ -40,7 +40,7 @@ jQuery(function($){
         socket.emit('create user', $newUser.val(), $newPass1.val(), $newPass2.val(), function(data){
             if(data){
                 $('#createUser').toggle();
-                $('#chat').toggle();
+                return window.location.href='chat.html';
             }else{
                 $createError.html("Error creating account. See console for details.");
                 $createForm.trigger('reset');
