@@ -73,7 +73,7 @@ io.on('connection', function(socket){
                     newUser.save(function(err){
                         if(err) throw err;
                     });
-                    sender = newUser;
+                    sender = user;
                     callback(true);
                 }else{
                     console.log('Error: Passwords do not match');
