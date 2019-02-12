@@ -10,16 +10,18 @@ Current features:
 Todo (short-term): 
 - some issues with password
   - encrypt the password at some point before storing it
-  - fix "incorrect password" error
-  - separate new user + existing user logins
 - add separate chats between:
   - pairs of users
   - groups of users
 - add tangent feature
 - construct a viable schema for all of the above
+- quality of life
+  - have scroll bar snap to bottom when user chats
+  - have auto update for all users in a chat when someone posts something
 
 Todo (medium-term):
 - add a remote client
+- and a remote server
 
 Potential long-term questions:
 1. How to dump data we don't need (old testing, etc.)
