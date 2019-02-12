@@ -5,6 +5,7 @@ jQuery(function($){
     var $usernameBox = $('#username');
     var $passwordBox = $('#password');
     var $toCreation = $('#toCreation');
+    var $logout = $('#logout');
 
     //create vars
     var $createError = $('#creationError');
@@ -58,5 +59,12 @@ jQuery(function($){
         $createError.html("");
         $('#login').toggle();
         $('#createUser').toggle();
+    });
+
+    $logout.submit(function(e){
+        e.preventDefault();
+        $('#chat').toggle();
+        $('#login').toggle();
+        socket.emit('logout user');
     });
 });

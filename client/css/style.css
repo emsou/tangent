@@ -20,8 +20,23 @@ body {
     display: none;
     height: 100vh;
 }
+#chatHeader {
+    background: #000;
+    height: 41px;
+    position: relative;
+    padding-top: 0px;
+}
+#chatHeader .btn {
+    width: 9%;
+    position: absolute;
+    right: 0px;
+    background: rgb(255, 128, 128); 
+    border: none; 
+    padding: 10px; 
+    margin-top: 3px;
+}
 #messageBox {
-    height: calc(100vh - 41px);
+    height: calc(100vh - 82px);
     overflow: auto;
 }
 #chatInput {

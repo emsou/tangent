@@ -81,6 +81,14 @@ io.on('connection', function(socket){
         var username = data.name;
         var userId = data.userId;
         userlist[username] = userId;
+        console.log(userlist);
+    });
+
+    socket.on('logout user', function(){
+        console.log('logging out of user ' + sender);
+        delete userlist[sender];
+        console.log(userlist);
+        sender = "Anonymous";
     });
 
     //create user function

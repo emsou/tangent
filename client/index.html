@@ -36,6 +36,11 @@
             </form>
         </div>
         <div id="chat" ng-controller="mainController">
+            <div id="chatHeader">
+                <form id="logout">
+                    <button type="submit" class="btn">Logout</button>
+                </form>
+            </div>
             <div id="messageBox"><ul id="messages"></ul></div>
             <div id="chatInput">
                 <input id="m" ng-model="message" autocomplete="off" />
