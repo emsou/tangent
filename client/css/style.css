@@ -16,6 +16,14 @@ body {
 #createUser {
     display: none;
 }
+#chat {
+    display: none;
+    height: 100vh;
+}
+#messageBox {
+    height: calc(100vh - 41px);
+    overflow: auto;
+}
 #chatInput {
     background: #000;
     padding: 3px;

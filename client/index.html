@@ -35,5 +35,12 @@
                 <button type="submit" class="btn">Back</button>
             </form>
         </div>
+        <div id="chat" ng-controller="mainController">
+            <div id="messageBox"><ul id="messages"></ul></div>
+            <div id="chatInput">
+                <input id="m" ng-model="message" autocomplete="off" />
+                <button ng-click="send()">Send</button>
+            </div>
+        </div>
     </body>
 </html>

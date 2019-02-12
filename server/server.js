@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var session = require('express-session');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
@@ -30,14 +31,24 @@ var userSchema = new mongoose.Schema({
 });
 var User = mongoose.model('User', userSchema);
 
+var userlist = {};
+
 //app
 app.use('/', express.static(__dirname));
 app.use('/', express.static(__dirname + '/../client/'));
 app.get('/', function(req, res){
     res.sendfile(__dirname + '/index.html');
 });
+app.use(session({
+    secret: '34SDgsdgspxxxxxxxdfsG', // just a long random string
+    resave: false,
+    saveUninitialized: true
+}));
+
 io.on('connection', function(socket){
     console.log('user connected');
+    console.log('session id ' + socket.id);
+    console.log(userlist);
 
     var query =  Message.find({});
     query.sort('-timestamp').limit(100).exec(function(err, docs){
@@ -56,13 +67,22 @@ io.on('connection', function(socket){
                 console.log('Existing User ' + user);
                 if(docs[0].password === pass){
                     callback(true);
+                    console.log('Setting user to ' + user);
                     sender = user;
                 }else{
+                    console.log('Not setting user.');
                     callback(false);
                 }
             }
         });
     });
+
+    socket.on('set socket id', function(data){
+        var username = data.name;
+        var userId = data.userId;
+        userlist[username] = userId;
+    });
+
     //create user function
     socket.on('create user', function(user, pass1, pass2, callback){
         var existingUsers = User.find({name : user}, function(err, docs){
